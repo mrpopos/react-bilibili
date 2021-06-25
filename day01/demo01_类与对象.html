@@ -1,0 +1,65 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-06-15 10:50:40
+ * @LastEditTime: 2021-06-15 11:41:22
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\react-bilibili\day01\demo_1函数式组件.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+  <title>函数式组件</title>
+</head>
+
+<body>
+
+  <!-- 引入react核心库 -->
+  <script src="../js/react.development.js" type="text/javascript"></script>
+  <!-- 引入react-dom扩展库 -->
+  <script src="../js/react-dom.development.js" type="text/javascript"></script>
+  <!-- 引入babel扩展库 -->
+  <script src="../js/babel.min.js" type="text/javascript"></script>
+
+  <script type='text/javascript'>
+    // function demo() {
+    //   'use strict'
+    //   console.log(this)
+    // }
+
+    // demo()
+
+    class Person {
+      constructor() {
+        this.name = 'czy'
+        this.age = 18
+      }
+      static fav = 'tq'
+    }
+
+    class Student extends Person {
+      // constructor() {
+      //   super()
+      //   this.rank = 'A'
+      // }
+      rank = 'A'
+      static sex = 'male'
+
+      study() {
+        console.log('this@: ', this);
+      }
+    }
+
+    const s1 = new Student()
+
+    // console.log(s1)
+    s1.study()
+  </script>
+</body>
+
+</html>
