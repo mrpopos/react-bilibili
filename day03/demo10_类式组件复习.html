@@ -1,0 +1,47 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-07-09 17:37:16
+ * @LastEditTime: 2021-07-09 18:05:35
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \web\react-bilibili\day03\demo10_类式组件复习.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>复习类式组件</title>
+</head>
+<body>
+  <div id="demo"></div>
+
+  <script type="text/babel">
+    class Person extends React.Component {
+      state = { currSex: 'male' }
+      render() {
+        return (
+          <div onClick={this.changeSex}>
+            <div>名字: {this.props.name}</div>
+            <div>年龄: {this.props.age + 7}</div>
+            <div>性别: {this.state.currSex}</div>
+          </div>
+        )
+      }
+      changeSex = () => {
+        // console.log(this.props)
+        const { currSex } = this.state
+        this.setState({ currSex: currSex === 'male' ? 'famale' : 'male' })
+      }
+    }
+
+    ReactDOM.render(<Person name='mrpopos' age={12} sex='male' />, document.getElementById('demo'))
+  </script>
+  
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/prop-types.js"></script>
+</body>
+</html>
