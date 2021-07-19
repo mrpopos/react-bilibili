@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类式组件</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script type="text/babel">
+        class Person extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <input ref="left" type="text" name="" id="" />
+                        <button onClick={this.showLeftValue}>点击我打印左侧标签的值</button>
+                        <input onBlur={this.showRightValue} ref="right" type="text" name="" id="" />
+                    </div>
+                )
+            }
+            showLeftValue = () => {
+                // console.log(this);
+                const { left } = this.refs
+                if (left.value) {
+                    alert(left.value)
+                }
+            }
+            showRightValue = () => {
+                const { right } = this.refs
+                if (right.value) {
+                    alert(right.value)
+                }
+            }
+        }
+
+        ReactDOM.render(<Person />, document.getElementById('demo'))
+
+
+    </script>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script src="../js/prop-types.js"></script>
+</body>
+
+</html>
