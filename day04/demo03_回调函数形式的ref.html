@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回调函数形式的ref</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script type="text/babel">
+        class Person extends React.Component {
+            render() {
+                console.log(this)
+                return (
+                    <div>
+                        <input ref={currentNode => this.inputNode1 = currentNode} type="text" name="" id="" />
+                        <button onClick={this.showLeftValue}>点击我打印左侧标签的值</button>
+                        <input ref={currentNode => this.inputNode2 = currentNode} onBlur={this.showRightValue} type="text" name="" id="" />
+                    </div>
+                )
+            }
+            showLeftValue = () => {
+                // console.log(this);
+                const { inputNode1 } = this
+                if (inputNode1.value) {
+                    alert(inputNode1.value)
+                }
+            }
+            showRightValue = () => {
+                const { inputNode2 } = this
+                if (inputNode2.value) {
+                    alert(inputNode2.value)
+                }
+            }
+        }
+
+        ReactDOM.render(<Person />, document.getElementById('demo'))
+
+
+    </script>
+
+    <script src="../js/react.development.js"></script>
+    <script src="../js/react-dom.development.js"></script>
+    <script src="../js/babel.min.js"></script>
+    <script src="../js/prop-types.js"></script>
+</body>
+
+</html>
