@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>demo12_高阶函数与函数的柯里化</title>
+</head>
+<body>
+  
+  <div id="demo"></div>
+
+  <script type="text/babel">
+    /**
+     * 高阶函数：能接受函数类型的参数 或者 返回值是函数类型 的函数被称为高阶函数
+     * 
+     * 函数柯里化：使用用一个函数，处理不同接收参数最终统一处理的函数编码形式
+     * 
+    */
+    class UserLogin extends React.Component {
+
+      state = {username: '', password: ''}
+
+      saveUserInfo = data => {
+        return event => {
+          // console.log(`${data} => ${event.target.value}`)
+          this.setState({ [data]: event.target.value })
+        }
+      }
+
+      handleSubmit = (event) => {
+        event.preventDefault()
+        const { username, password } = this.state
+        alert(`username is ${username}, password is ${password}`)
+      }
+
+      render() {
+        return(
+          <form action="http://www.baidu.com" onSubmit={this.handleSubmit}>
+            <input onChange={this.saveUserInfo('username')} type="text" name="username"/><br/>
+            <input onChange={this.saveUserInfo('password')} type="text" name="username"/><br/>
+            <button>login</button>
+          </form>
+        )
+      }
+    }
+
+    ReactDOM.render(<UserLogin />, document.getElementById('demo'))
+  </script>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+</body>
+</html>
