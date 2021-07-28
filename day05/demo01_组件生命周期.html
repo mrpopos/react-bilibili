@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React组件生命周期</title>
+</head>
+
+<body>
+
+  <div id="demo"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+    class KeepAlive extends React.Component {
+
+      state = { opacity: 1 }
+
+      render() {
+        return (
+          <div>
+            <h3 style={{ opacity: this.state.opacity }}>react学不会怎么办？</h3>
+            <button onClick={this.unmountSelf}>自杀</button>
+          </div>
+        )
+      }
+
+      componentDidMount() {
+        let { opacity } = this.state
+        this.timer = setInterval(() => {
+          opacity -= 0.1
+          if (opacity <= 0) {
+            opacity = 1
+          }
+          this.setState({ opacity })
+        }, 200)
+      }
+
+      componentWillUnmount() {
+        clearInterval(this.timer)
+      }
+
+      unmountSelf = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById('demo'))
+      }
+    }
+
+    ReactDOM.render(<KeepAlive />, document.getElementById('demo'))
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React组件生命周期回调函数</title>
+</head>
+
+<body>
+
+  <div id="demo"></div>
+
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <script src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Life extends React.Component {
+
+      // super()子类中的构造函数中必须调用该方法，而且需要放置在最前面。
+      constructor(props) {
+        console.log('Life@constructor')
+        super(props)
+        this.state = { count: 0 }
+      }
+
+      componentWillMount() {
+        console.log('Life@componentWillMount')
+      }
+
+      componentDidMount() {
+        console.log('Life@componentDidMount')
+      }
+
+      componentWillUnmount() {
+        console.log('Life@componentWillUnmount')
+      }
+
+      shouldComponentUpdate() {
+        console.log('Life@shouldComponentUpdate')
+        return true
+      }
+
+      componentWillUpdate() {
+        console.log('Life@componentWillUpdate')
+        return true
+      }
+
+      componentDidUpdate() {
+        console.log('Life@componentDidUpdate')
+        return true
+      }
+
+      render() {
+        console.log('Life@render')
+        return (
+          <div>
+            <h3>当前数值：{this.state.count}</h3>
+            <button onClick={this.autoIncrement}>点击自增</button>
+            <button onClick={this.unmountComponent}>卸载组件</button>
+            <button onClick={this.forceUpdateComponent}>强制更新</button>
+          </div>
+        )
+      }
+
+      autoIncrement = () => {
+        const { count } = this.state
+        this.setState({ count: count + 1 })
+      }
+
+      unmountComponent = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById('demo'))
+      }
+
+      forceUpdateComponent = () => {
+        this.forceUpdate()
+      }
+
+    }
+
+    ReactDOM.render(<Life />, document.getElementById('demo'))
+  </script>
+
+</body>
+
+</html>
